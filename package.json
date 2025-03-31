@@ -1,0 +1,27 @@
+{
+  "name": "bun-react-template",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.tsx",
+  "module": "src/index.tsx",
+  "scripts": {
+    "dev": "bun --hot src/index.tsx",
+    "build": "bun build ./src/index.html --outdir=dist --sourcemap --target=browser --minify --define:process.env.NODE_ENV='\"production\"' --env='BUN_PUBLIC_*'",
+    "start": "NODE_ENV=production bun src/index.tsx"
+  },
+  "dependencies": {
+    "@gradio/client": "^1.13.1",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "multer": "^1.4.5-lts.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sass": "^1.85.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "@types/bun": "latest"
+  }
+}

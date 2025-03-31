@@ -1,0 +1,26 @@
+[serve.static]
+env = "BUN_PUBLIC_*"
+
+[define]
+"process.env.NODE_ENV" = "development"
+
+[loaders]
+".scss" = "css"
+".module.scss" = { loader = "css", cssModules = true }
+
+# Add node polyfills for browser compatibility
+[node-polyfills]
+buffer = true
+events = true
+net = true
+tls = true
+path = true
+fs = true
+
+# Create aliases for Node.js core modules
+[modules]
+tls = "./src/shims.ts"
+net = "./src/shims.ts"
+fs = "./src/shims.ts"
+path = "./src/shims.ts"
+crypto = "./src/shims.ts"

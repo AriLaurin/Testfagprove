@@ -1,0 +1,481 @@
+/* ===== BASE STYLES ===== */
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+}
+
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+  position: relative;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+/* ===== LAYOUT COMPONENTS ===== */
+
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== FILE TYPE SELECTOR ===== */
+.fileTypeSelector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.fileTypeSelector label {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.fileTypeSelector select {
+  flex: 1;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  outline: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.fileTypeSelector select:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.fileTypeSelector select:focus {
+  border-color: #646cff;
+  box-shadow: 0 0 0 2px rgba(100, 108, 255, 0.3);
+}
+
+.fileTypeSelector select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.fileTypeSelector select option {
+  background-color: #242424;
+  color: white;
+}
+
+/* ===== FILE INPUT AREA ===== */
+
+.fileInput {
+  position: absolute;
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.fileLabel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 87%;
+  min-height: 100px;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+.fileLabel:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+/* ===== FILE LIST ===== */
+.fileList {
+  text-align: left;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.fileListHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.fileList h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.fileList ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.fileList li {
+  margin-bottom: 0.5rem;
+  padding: 0.75rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+.fileInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fileName {
+  word-break: break-all;
+  flex: 1;
+}
+
+.fileSize {
+  margin-left: 1rem;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+/* ===== BUTTONS ===== */
+.clearButton {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.clearButton:hover:not(:disabled) {
+  color: rgba(255, 255, 255, 1);
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.clearButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.uploadButton {
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.uploadButton:hover:not(:disabled) {
+  background-color: #747bff;
+}
+
+.uploadButton:disabled {
+  background-color: rgba(100, 108, 255, 0.5);
+  cursor: not-allowed;
+}
+
+/* ===== STATUS MESSAGES ===== */
+.statusMessage {
+  padding: 0.75rem;
+  border-radius: 8px;
+  background-color: rgba(0, 255, 0, 0.1);
+  border-left: 4px solid rgba(0, 255, 0, 0.5);
+}
+
+.statusMessage.error {
+  background-color: rgba(255, 0, 0, 0.1);
+  border-left: 4px solid rgba(255, 0, 0, 0.5);
+}
+
+/* ===== RESPONSIVE STYLES ===== */
+@media (max-width: 768px) {
+  .uploadContainer {
+    padding: 1.5rem;
+  }
+  
+  .fileLabel {
+    min-height: 80px;
+    padding: 1rem;
+  }
+}
+
+.scanResults {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.resultItem {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #eaeaea;
+  border-radius: 4px;
+  background-color: white;
+}
+
+.resultItem h3 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.labels {
+  margin: 10px 0;
+}
+
+.labelContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 5px;
+}
+
+.label {
+  background-color: #e0f7fa;
+  border: 1px solid #b2ebf2;
+  border-radius: 15px;
+  padding: 3px 10px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+  display: inline-block;
+}
+
+.context {
+  margin-top: 10px;
+}
+
+.context p {
+  margin: 5px 0 0 0;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  white-space: pre-line;
+}
+
+.toggleButton {
+  background-color: #f0f0f0;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 5px 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.toggleButton:hover {
+  background-color: #e0e0e0;
+}
+
+.fullText {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #eee;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  max-height: 300px;
+  overflow-y: auto;
+  white-space: pre-wrap;
+}
+
+/* Document display with labels styling */
+.document-display {
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.document-metadata {
+  margin-bottom: 20px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.category-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0;
+}
+
+.category-tag {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: #2f3c87;
+  color: white;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.document-content {
+  background-color: white;
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #e0e0e0;
+}
+
+.text-content {
+  white-space: pre-line;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.highlighted-category {
+  background-color: #ffeb3b;
+  padding: 2px 0;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+/* Make sure the document display is responsive */
+@media (max-width: 768px) {
+  .document-display {
+    padding: 15px;
+  }
+  
+  .category-tag {
+    padding: 3px 8px;
+    font-size: 12px;
+  }
+  
+  .text-content {
+    font-size: 13px;
+  }
+}
+
+/* Styles for document list with labels */
+.document-list-container {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #242424;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.document-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.document-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  background-color: #242424;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.document-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.document-icon {
+  font-size: 24px;
+  margin-right: 15px;
+  min-width: 30px;
+  text-align: center;
+}
+
+.document-info {
+  flex: 1;
+}
+
+.document-name {
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.document-meta {
+  font-size: 12px;
+  color: #666;
+}
+
+.document-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-left: 10px;
+}
+
+.document-label {
+  display: inline-block;
+  padding: 4px 10px;
+  background-color: #2f3c87;
+  color: white;
+  border-radius: 16px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+/* Document label colors */
+.document-label:nth-child(1) {
+  background-color: #2f3c87; /* Blue */
+}
+
+.document-label:nth-child(2) {
+  background-color: #3f8036; /* Green */
+}
+
+.document-label:nth-child(3) {
+  background-color: #844b35; /* Brown */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .document-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .document-icon {
+    margin-bottom: 10px;
+  }
+  
+  .document-labels {
+    margin-left: 0;
+    margin-top: 10px;
+    width: 100%;
+  }
+}
